@@ -12,7 +12,7 @@ app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
 const port = 3000;
 app.get('/', (req, res) => {
-    db_1.default.query('SELECT * FROM moradores', (err, result) => {
+    db_1.default.query('SELECT * FROM User', (err, result) => {
         if (err) {
             console.error('Error querying database:', err);
             res.status(500).send('Internal server error');

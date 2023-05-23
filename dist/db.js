@@ -8,7 +8,7 @@ const db = mysql2_1.default.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'apartamento'
+    database: 'angola_comunica'
 });
 db.connect((err) => {
     if (err) {

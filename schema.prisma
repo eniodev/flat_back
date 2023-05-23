@@ -1,0 +1,75 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model CriteriosDivisaoDespesas {
+  id              Int                   @id @default(autoincrement())
+  descricao       CriteriosDivisaoEnum?
+  divisaoDespesas DivisaoDespesas[]
+  Despesa         Despesa[]
+}
+
+model DivisaoDespesas {
+  id                         Int                       @id @default(autoincrement())
+  morador                    Int?
+  despesa                    Int?
+  valorPago                  Float?
+  proporcao                  Float?
+  moradorFk                  Morador?                  @relation(fields: [morador], references: [id])
+  despesaFk                  Despesa?                  @relation(fields: [despesa], references: [id])
+  CriteriosDivisaoDespesas   CriteriosDivisaoDespesas? @relation(fields: [criteriosDivisaoDespesasId], references: [id])
+  criteriosDivisaoDespesasId Int?
+}
+
+model Despesa {
+  id              Int                       @id @default(autoincrement())
+  descricao       String?
+  valor           Float?
+  data            DateTime?
+  criterioDivisao Int?
+  recorrente      Boolean?
+  criterioFk      CriteriosDivisaoDespesas? @relation(fields: [criterioDivisao], references: [id])
+  DivisaoDespesas DivisaoDespesas[]
+}
+
+model ModalidadesPagamento {
+  id        Int                       @id @default(autoincrement())
+  descricao ModalidadesPagamentoEnum?
+}
+
+model Morador {
+  id              Int               @id @default(autoincrement())
+  nome            String?
+  email           String?
+  dataNascimento  DateTime?
+  senha           String?
+  isAdmin         Boolean?
+  quartos         Quarto[]
+  divisaoDespesas DivisaoDespesas[]
+}
+
+model Quarto {
+  id         Int       @id @default(autoincrement())
+  numero     Int?
+  tamanho    Float?
+  morador    Int?
+  dataInicio DateTime?
+  dataFim    DateTime?
+  moradorFk  Morador?  @relation(fields: [morador], references: [id])
+}
+
+enum CriteriosDivisaoEnum {
+  igual
+  renda
+  quarto
+}
+
+enum ModalidadesPagamentoEnum {
+  referencia
+  cash
+}
