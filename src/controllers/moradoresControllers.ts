@@ -1,36 +1,8 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-async function getAllDespesas() {
-  return await prisma.despesas.findMany();
+async function getMoradores() {
+  return await prisma.moradores.findMany();
 }
 
 async function getUserById(id) {
@@ -59,10 +31,10 @@ async function deleteUser(id) {
 }
 
 module.exports = {
-  getAllDespesas,
+  getMoradores,
   getUserById,
   createUser,
   updateUser,
   deleteUser
 }
- */
+

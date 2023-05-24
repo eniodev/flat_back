@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const moradoresController = require('../controllers/moradoresControllers')
 
-// Importe os controllers aqui
+/* Importe os controllers aqui
 const criteriosController = require('../controllers/criteriosController');
 const divisaoDespesasController = require('../controllers/divisaoDespesasController');
 const despesasController = require('../controllers/despesasController');
@@ -22,10 +23,16 @@ router.get('/divisao-despesas/:id', divisaoDespesasController.getDivisaoDespesaB
 router.post('/divisao-despesas', divisaoDespesasController.createDivisaoDespesa);
 router.put('/divisao-despesas/:id', divisaoDespesasController.updateDivisaoDespesa);
 router.delete('/divisao-despesas/:id', divisaoDespesasController.deleteDivisaoDespesa);
-
+*/
 // Rotas para Despesas
-router.get('/despesas', despesasController.getDespesas);
-router.get('/despesas/:id', despesasController.getDespesaById);
+router.get('/', async (req, res) => {
+    const despesas = await moradoresController.getMoradores();
+
+    return res.json(despesas)
+});
+
+
+/*router.get('/despesas/:id', despesasController.getDespesaById);
 router.post('/despesas', despesasController.createDespesa);
 router.put('/despesas/:id', despesasController.updateDespesa);
 router.delete('/despesas/:id', despesasController.deleteDespesa);
@@ -36,7 +43,7 @@ router.get('/modalidades-pagamento/:id', modalidadesPagamentoController.getModal
 router.post('/modalidades-pagamento', modalidadesPagamentoController.createModalidadePagamento);
 router.put('/modalidades-pagamento/:id', modalidadesPagamentoController.updateModalidadePagamento);
 router.delete('/modalidades-pagamento/:id', modalidadesPagamentoController.deleteModalidadePagamento);
-*/
+ 
 // Rotas para Moradores
 router.get('/', moradoresController.getMoradores);
 router.get('/:id', moradoresController.getMoradorById);
@@ -50,7 +57,8 @@ router.get('/quartos/:id', quartosController.getQuartoById);
 router.post('/quartos', quartosController.createQuarto);
 router.put('/quartos/:id', quartosController.updateQuarto);
 router.delete('/quartos/:id', quartosController.deleteQuarto);
-*/
+ */
+
 module.exports = router;
 
 

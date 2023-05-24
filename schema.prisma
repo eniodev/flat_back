@@ -20,7 +20,7 @@ model DivisaoDespesas {
   despesa                    Int?
   valorPago                  Float?
   proporcao                  Float?
-  moradorFk                  Morador?                  @relation(fields: [morador], references: [id])
+  moradorFk                  Moradores?                  @relation(fields: [morador], references: [id])
   despesaFk                  Despesa?                  @relation(fields: [despesa], references: [id])
   CriteriosDivisaoDespesas   CriteriosDivisaoDespesas? @relation(fields: [criteriosDivisaoDespesasId], references: [id])
   criteriosDivisaoDespesasId Int?
@@ -42,11 +42,11 @@ model ModalidadesPagamento {
   descricao ModalidadesPagamentoEnum?
 }
 
-model Morador {
+model Moradores {
   id              Int               @id @default(autoincrement())
   nome            String?
   email           String?
-  dataNascimento  DateTime?
+  data_nascimento  DateTime?
   senha           String?
   isAdmin         Boolean?
   quartos         Quarto[]
@@ -60,7 +60,7 @@ model Quarto {
   morador    Int?
   dataInicio DateTime?
   dataFim    DateTime?
-  moradorFk  Morador?  @relation(fields: [morador], references: [id])
+  moradorFk  Moradores?  @relation(fields: [morador], references: [id])
 }
 
 enum CriteriosDivisaoEnum {

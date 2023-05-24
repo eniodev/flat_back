@@ -1,8 +1,18 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const router = express.Router();
-// Importe os controllers aqui
+const moradoresController = require('../controllers/moradoresControllers');
+/* Importe os controllers aqui
 const criteriosController = require('../controllers/criteriosController');
 const divisaoDespesasController = require('../controllers/divisaoDespesasController');
 const despesasController = require('../controllers/despesasController');
@@ -23,10 +33,13 @@ router.get('/divisao-despesas/:id', divisaoDespesasController.getDivisaoDespesaB
 router.post('/divisao-despesas', divisaoDespesasController.createDivisaoDespesa);
 router.put('/divisao-despesas/:id', divisaoDespesasController.updateDivisaoDespesa);
 router.delete('/divisao-despesas/:id', divisaoDespesasController.deleteDivisaoDespesa);
-
+*/
 // Rotas para Despesas
-router.get('/despesas', despesasController.getDespesas);
-router.get('/despesas/:id', despesasController.getDespesaById);
+router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const despesas = yield moradoresController.getMoradores();
+    return res.json(despesas);
+}));
+/*router.get('/despesas/:id', despesasController.getDespesaById);
 router.post('/despesas', despesasController.createDespesa);
 router.put('/despesas/:id', despesasController.updateDespesa);
 router.delete('/despesas/:id', despesasController.deleteDespesa);
@@ -37,7 +50,7 @@ router.get('/modalidades-pagamento/:id', modalidadesPagamentoController.getModal
 router.post('/modalidades-pagamento', modalidadesPagamentoController.createModalidadePagamento);
 router.put('/modalidades-pagamento/:id', modalidadesPagamentoController.updateModalidadePagamento);
 router.delete('/modalidades-pagamento/:id', modalidadesPagamentoController.deleteModalidadePagamento);
-*/
+ 
 // Rotas para Moradores
 router.get('/', moradoresController.getMoradores);
 router.get('/:id', moradoresController.getMoradorById);
@@ -51,6 +64,6 @@ router.get('/quartos/:id', quartosController.getQuartoById);
 router.post('/quartos', quartosController.createQuarto);
 router.put('/quartos/:id', quartosController.updateQuarto);
 router.delete('/quartos/:id', quartosController.deleteQuarto);
-*/
+ */
 module.exports = router;
 //# sourceMappingURL=routes.js.map

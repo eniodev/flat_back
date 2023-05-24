@@ -1,43 +1,55 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-/*const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-
-async function getAllDespesas() {
-  return await prisma.despesas.findMany();
+function getMoradores() {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield prisma.moradores.findMany();
+    });
 }
-
-async function getUserById(id) {
-  return await prisma.user.findUnique({
-    where: { id: Number(id) },
-  });
+function getUserById(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield prisma.user.findUnique({
+            where: { id: Number(id) },
+        });
+    });
 }
-
-async function createUser(user) {
-  return await prisma.user.create({
-    data: { ...user },
-  });
+function createUser(user) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield prisma.user.create({
+            data: Object.assign({}, user),
+        });
+    });
 }
-
-async function updateUser(id, user) {
-  return await prisma.user.update({
-    where: { id: Number(id) },
-    data: { ...user },
-  });
+function updateUser(id, user) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield prisma.user.update({
+            where: { id: Number(id) },
+            data: Object.assign({}, user),
+        });
+    });
 }
-
-async function deleteUser(id) {
-  return await prisma.user.delete({
-    where: { id: Number(id) },
-  });
+function deleteUser(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield prisma.user.delete({
+            where: { id: Number(id) },
+        });
+    });
 }
-
 module.exports = {
-  getAllDespesas,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser
-}
- */
+    getMoradores,
+    getUserById,
+    createUser,
+    updateUser,
+    deleteUser
+};
 //# sourceMappingURL=moradoresControllers.js.map
