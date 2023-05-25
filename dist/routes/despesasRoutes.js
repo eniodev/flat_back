@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,33 +8,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
-const despesasController = require('../controllers/despesasController.js');
 const router = express.Router();
-router.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const despesas = yield despesasController.getAllDespesas();
-    res.json(despesas);
+const despesasController = require('../controllers/despesasController');
+router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const despesas = yield despesasController.getDespesas();
+    return res.json(despesas);
 }));
-router.get('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const user = yield despesasController.getUserById(req.params.id);
-    if (!user)
-        return res.status(404).json({ message: 'User não encontrado' });
-    res.json(user);
+router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const despesa = yield despesasController.getDespesaById(req.params.id);
+    if (!despesa)
+        return res.status(404).json({ message: 'despesa não encontrada' });
+    res.json(despesa);
 }));
-router.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const user = yield despesasController.createUser(req.body);
-    res.json(user);
+router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const despesa = yield despesasController.createDespesa(req.body);
+    res.json(despesa);
 }));
-router.put('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const user = yield despesasController.updateUser(req.params.id, req.body);
-    if (!user)
-        return res.status(404).json({ message: 'User não encontrado' });
-    res.json(user);
+router.put('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const despesa = yield despesasController.updateDespesa(req.params.id, req.body);
+    if (!despesa)
+        return res.status(404).json({ message: 'despesa não encontrada' });
+    res.json(despesa);
 }));
-router.delete('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const result = yield despesasController.deleteUser(req.params.id);
+router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield despesasController.deleteDespesa(req.params.id);
     if (!result)
-        return res.status(404).json({ message: 'User não encontrado' });
+        return res.status(404).json({ message: 'despesa não encontrada' });
     res.sendStatus(204);
 }));
 module.exports = router;

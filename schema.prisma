@@ -11,7 +11,7 @@ model CriteriosDivisaoDespesas {
   id              Int                   @id @default(autoincrement())
   descricao       CriteriosDivisaoEnum?
   divisaoDespesas DivisaoDespesas[]
-  Despesa         Despesa[]
+  Despesa         Despesas[]
 }
 
 model DivisaoDespesas {
@@ -21,19 +21,19 @@ model DivisaoDespesas {
   valorPago                  Float?
   proporcao                  Float?
   moradorFk                  Moradores?                  @relation(fields: [morador], references: [id])
-  despesaFk                  Despesa?                  @relation(fields: [despesa], references: [id])
+  despesaFk                  Despesas?                  @relation(fields: [despesa], references: [id])
   CriteriosDivisaoDespesas   CriteriosDivisaoDespesas? @relation(fields: [criteriosDivisaoDespesasId], references: [id])
   criteriosDivisaoDespesasId Int?
 }
 
-model Despesa {
+model Despesas {
   id              Int                       @id @default(autoincrement())
   descricao       String?
   valor           Float?
   data            DateTime?
-  criterioDivisao Int?
+  criterio_divisao Int?
   recorrente      Boolean?
-  criterioFk      CriteriosDivisaoDespesas? @relation(fields: [criterioDivisao], references: [id])
+  criterioFk      CriteriosDivisaoDespesas? @relation(fields: [criterio_divisao], references: [id])
   DivisaoDespesas DivisaoDespesas[]
 }
 
