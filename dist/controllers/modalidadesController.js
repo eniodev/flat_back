@@ -52,4 +52,4 @@ module.exports = {
     updateModalidade,
     deleteModalidade
 };
-//# sourceMappingURL=modalidadesPagamentoController.js.map
+//# sourceMappingURL=modalidadesController.js.map

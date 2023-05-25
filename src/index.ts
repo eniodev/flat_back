@@ -6,6 +6,7 @@ const moradoresRoutes =  require('./routes/moradoresRoutes');
 const despesasRoutes = require('./routes/despesasRoutes');
 const criterioRoutes = require('./routes/criteriosRoutes');
 const divisaoRoutes = require('./routes/divisaoRoutes');
+const modalidadesRoutes = require('./routes/modalidadesRoutes');
 dotenv.config();
 
 const app = expressJS();
@@ -16,7 +17,8 @@ app.use(bodyParser.json());
 app.use('/moradores/', moradoresRoutes);
 app.use('/despesas/', despesasRoutes);
 app.use('/criterios/', criterioRoutes);
-app.use('/divisoes/', divisaoRoutes)
+app.use('/divisoes/', divisaoRoutes);
+app.use('/modalidades/', modalidadesRoutes)
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is UP!`);

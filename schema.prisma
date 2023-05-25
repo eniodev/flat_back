@@ -40,9 +40,11 @@ model Despesas {
   DivisaoDespesas Divisao_Despesas[]
 }
 
-model ModalidadesPagamento {
+model Modalidades_Pagamento {
   id        Int                       @id @default(autoincrement())
   descricao ModalidadesPagamentoEnum?
+
+   @@map("modalidades_pagamento")
 }
 
 model Moradores {
@@ -56,13 +58,13 @@ model Moradores {
   divisaoDespesas Divisao_Despesas[]
 }
 
-model Quarto {
+model Quartos {
   id         Int       @id @default(autoincrement())
   numero     Int?
   tamanho    Float?
   morador    Int?
-  dataInicio DateTime?
-  dataFim    DateTime?
+  data_inicio DateTime?
+  data_fim    DateTime?
   moradorFk  Moradores?  @relation(fields: [morador], references: [id])
 }
 
