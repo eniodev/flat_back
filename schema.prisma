@@ -10,7 +10,7 @@ generator client {
 model Criterios_Divisao_Despesas {
   id              Int                   @id @default(autoincrement())
   descricao       Criterios_Divisao?
-  divisao_Despesas Divisao_Despesas[]
+
   Despesa         Despesas[]
 
   @@map("criterios_divisao_despesas")
@@ -20,12 +20,13 @@ model Divisao_Despesas {
   id                         Int                       @id @default(autoincrement())
   morador                    Int?
   despesa                    Int?
-  valorPago                  Float?
+  valor_pago                  Float?
   proporcao                  Float?
   moradorFk                  Moradores?                  @relation(fields: [morador], references: [id])
   despesaFk                  Despesas?                  @relation(fields: [despesa], references: [id])
-  Criterios_Divisao_Despesas   Criterios_Divisao_Despesas? @relation(fields: [criterios_Divisao_DespesasId], references: [id])
-  criterios_Divisao_DespesasId Int?
+
+
+  @@map("divisao_despesas")
 }
 
 model Despesas {

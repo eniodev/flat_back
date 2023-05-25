@@ -12,20 +12,20 @@ async function getDespesaById(id) {
 }
 
 async function createDespesa(despesa) {
-  return await prisma.user.create({
+  return await prisma.despesas.create({
     data: { ...despesa },
   });
 }
 
 async function updateDespesa(id, despesa) {
-  return await prisma.despesa.update({
+  return await prisma.despesas.update({
     where: { id: Number(id) },
     data: { ...despesa },
   });
 }
 
 async function deleteDespesa(id) {
-  return await prisma.despesa.delete({
+  return await prisma.despesas.delete({
     where: { id: Number(id) },
   });
 }

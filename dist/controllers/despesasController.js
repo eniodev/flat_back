@@ -25,14 +25,14 @@ function getDespesaById(id) {
 }
 function createDespesa(despesa) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.user.create({
+        return yield prisma.despesas.create({
             data: Object.assign({}, despesa),
         });
     });
 }
 function updateDespesa(id, despesa) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.despesa.update({
+        return yield prisma.despesas.update({
             where: { id: Number(id) },
             data: Object.assign({}, despesa),
         });
@@ -40,7 +40,7 @@ function updateDespesa(id, despesa) {
 }
 function deleteDespesa(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.despesa.delete({
+        return yield prisma.despesas.delete({
             where: { id: Number(id) },
         });
     });
