@@ -7,14 +7,16 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model CriteriosDivisaoDespesas {
+model Criterios_Divisao_Despesas {
   id              Int                   @id @default(autoincrement())
-  descricao       CriteriosDivisaoEnum?
-  divisaoDespesas DivisaoDespesas[]
+  descricao       Criterios_Divisao?
+  divisao_Despesas Divisao_Despesas[]
   Despesa         Despesas[]
+
+  @@map("criterios_divisao_despesas")
 }
 
-model DivisaoDespesas {
+model Divisao_Despesas {
   id                         Int                       @id @default(autoincrement())
   morador                    Int?
   despesa                    Int?
@@ -22,8 +24,8 @@ model DivisaoDespesas {
   proporcao                  Float?
   moradorFk                  Moradores?                  @relation(fields: [morador], references: [id])
   despesaFk                  Despesas?                  @relation(fields: [despesa], references: [id])
-  CriteriosDivisaoDespesas   CriteriosDivisaoDespesas? @relation(fields: [criteriosDivisaoDespesasId], references: [id])
-  criteriosDivisaoDespesasId Int?
+  Criterios_Divisao_Despesas   Criterios_Divisao_Despesas? @relation(fields: [criterios_Divisao_DespesasId], references: [id])
+  criterios_Divisao_DespesasId Int?
 }
 
 model Despesas {
@@ -33,8 +35,8 @@ model Despesas {
   data            DateTime?
   criterio_divisao Int?
   recorrente      Boolean?
-  criterioFk      CriteriosDivisaoDespesas? @relation(fields: [criterio_divisao], references: [id])
-  DivisaoDespesas DivisaoDespesas[]
+  criterioFk      Criterios_Divisao_Despesas? @relation(fields: [criterio_divisao], references: [id])
+  DivisaoDespesas Divisao_Despesas[]
 }
 
 model ModalidadesPagamento {
@@ -50,7 +52,7 @@ model Moradores {
   senha           String?
   isAdmin         Boolean?
   quartos         Quarto[]
-  divisaoDespesas DivisaoDespesas[]
+  divisaoDespesas Divisao_Despesas[]
 }
 
 model Quarto {
@@ -63,7 +65,7 @@ model Quarto {
   moradorFk  Moradores?  @relation(fields: [morador], references: [id])
 }
 
-enum CriteriosDivisaoEnum {
+enum Criterios_Divisao {
   igual
   renda
   quarto
