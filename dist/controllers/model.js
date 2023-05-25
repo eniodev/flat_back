@@ -16,40 +16,40 @@ function getMoradores() {
         return yield prisma.moradores.findMany();
     });
 }
-function getMoradoreById(id) {
+function getUserById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.moradores.findUnique({
+        return yield prisma.user.findUnique({
             where: { id: Number(id) },
         });
     });
 }
-function createMorador(morador) {
+function createUser(user) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.moradores.create({
-            data: Object.assign({}, morador),
+        return yield prisma.user.create({
+            data: Object.assign({}, user),
         });
     });
 }
-function updateMorador(id, morador) {
+function updateUser(id, user) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.moradores.update({
+        return yield prisma.user.update({
             where: { id: Number(id) },
-            data: Object.assign({}, morador),
+            data: Object.assign({}, user),
         });
     });
 }
-function deleteMorador(id) {
+function deleteUser(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.moradores.delete({
+        return yield prisma.user.delete({
             where: { id: Number(id) },
         });
     });
 }
 module.exports = {
     getMoradores,
-    getMoradoreById,
-    createMorador,
-    updateMorador,
-    deleteMorador
+    getUserById,
+    createUser,
+    updateUser,
+    deleteUser
 };
-//# sourceMappingURL=moradoresController.js.map
+//# sourceMappingURL=model.js.map
