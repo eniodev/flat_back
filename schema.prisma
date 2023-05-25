@@ -54,7 +54,7 @@ model Moradores {
   data_nascimento  DateTime?
   senha           String?
   isAdmin         Boolean?
-  quartos         Quarto[]
+  quartos         Quartos[]
   divisaoDespesas Divisao_Despesas[]
 }
 
